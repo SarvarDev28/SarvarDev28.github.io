@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sarvarbek Ismonjonov — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --accent: #C8965A;
+      --accent2: #a37440;
+      --bg: #0e0e10;
+      --bg2: #18181c;
+      --bg3: #222228;
+      --text: #f0ede8;
+      --sub: #9a9690;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 4rem;
+      background: rgba(14,14,16,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--accent); }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { font-size:13px; color:var(--sub); text-decoration:none; letter-spacing:.05em; transition:color .2s; }
+    .nav-links a:hover { color:var(--text); }
+    .nav-btn { background:var(--accent); color:#fff; border:none; padding:.55rem 1.4rem; border-radius:50px; font-size:13px; font-family:'DM Sans',sans-serif; cursor:pointer; transition:background .2s; text-decoration:none; }
+    .nav-btn:hover { background:var(--accent2); }
+
+    /* HERO */
+    .hero {
+      min-height:100vh; display:flex; align-items:center; justify-content:space-between;
+      padding:8rem 4rem 4rem; position:relative; overflow:hidden;
+    }
+    .hero::before {
+      content:''; position:absolute; top:-200px; right:-200px;
+      width:600px; height:600px; border-radius:50%;
+      background:radial-gradient(circle,rgba(200,150,90,0.12) 0%,transparent 70%);
+      pointer-events:none;
+    }
+    .hero-left { max-width:560px; }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:var(--bg2); border:1px solid var(--border);
+      border-radius:50px; padding:.35rem 1rem;
+      font-size:12px; color:var(--sub); letter-spacing:.05em; margin-bottom:1.5rem;
+    }
+    .hero-badge span { color:var(--accent); }
+    .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.8rem,5vw,4rem); font-weight:700; line-height:1.1; margin-bottom:1.2rem; }
+    .hero h1 .name { color:var(--accent); }
+    .hero-sub { font-size:16px; color:var(--sub); line-height:1.8; margin-bottom:2rem; max-width:420px; }
+    .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+    .btn-primary {
+      background:var(--accent); color:#fff; border:none;
+      padding:.8rem 2rem; border-radius:50px; font-size:14px;
+      font-family:'DM Sans',sans-serif; cursor:pointer; text-decoration:none;
+      transition:background .2s,transform .15s; display:inline-block;
+    }
+    .btn-primary:hover { background:var(--accent2); transform:translateY(-1px); }
+    .btn-secondary {
+      background:transparent; color:var(--text); border:1px solid var(--border);
+      padding:.8rem 2rem; border-radius:50px; font-size:14px;
+      font-family:'DM Sans',sans-serif; cursor:pointer; text-decoration:none;
+      transition:border-color .2s,transform .15s; display:inline-block;
+    }
+    .btn-secondary:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-1px); }
+    .hero-right { flex-shrink:0; }
+    .avatar-ring {
+      width:280px; height:280px; border-radius:50%;
+      border:2px solid var(--accent);
+      display:flex; align-items:center; justify-content:center;
+      position:relative; box-shadow:0 0 60px rgba(200,150,90,0.15);
+      overflow:hidden;
+    }
+    .avatar-ring img {
+      width:100%; height:100%; object-fit:cover; border-radius:50%;
+    }
+    .avatar-inner {
+      width:255px; height:255px; border-radius:50%;
+      background:linear-gradient(135deg,#1e1b16,#2c2518);
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Playfair Display',serif; font-size:6rem; color:var(--accent);
+    }
+    .avatar-dot {
+      position:absolute; bottom:12px; right:12px;
+      background:var(--accent); color:#fff;
+      border-radius:20px; padding:.3rem .8rem;
+      font-size:11px; font-weight:500; border:2px solid var(--bg);
+    }
+
+    /* STATS */
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .stat { text-align:center; padding:2rem; border-right:1px solid var(--border); }
+    .stat:last-child { border-right:none; }
+    .stat-num { font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:700; color:var(--accent); }
+    .stat-label { font-size:12px; color:var(--sub); margin-top:.3rem; letter-spacing:.05em; }
+
+    /* SECTIONS */
+    section { padding:6rem 4rem; }
+    .section-tag { font-size:11px; color:var(--accent); letter-spacing:.15em; text-transform:uppercase; margin-bottom:.5rem; }
+    .section-title { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.4rem); margin-bottom:.6rem; line-height:1.2; }
+    .section-sub { font-size:15px; color:var(--sub); margin-bottom:3rem; max-width:480px; }
+
+    /* ABOUT */
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+    .about-text p { font-size:15px; color:var(--sub); line-height:1.9; margin-bottom:1rem; }
+    .skills-wrap { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.5rem; }
+    .skill-tag { background:var(--bg2); border:1px solid var(--border); border-radius:50px; padding:.3rem .9rem; font-size:12px; color:var(--sub); }
+    .about-image-block { background:var(--bg2); border:1px solid var(--border); border-radius:20px; padding:2.5rem; }
+    .exp-item { display:flex; gap:1rem; margin-bottom:1.5rem; }
+    .exp-dot { width:36px; height:36px; border-radius:10px; background:rgba(200,150,90,0.15); display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:16px; flex-shrink:0; }
+    .exp-title { font-size:14px; font-weight:500; margin-bottom:.2rem; }
+    .exp-sub { font-size:12px; color:var(--sub); }
+
+    /* SERVICES */
+    .services-bg { background:var(--bg2); }
+    .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+    .service-card { background:var(--bg); border:1px solid var(--border); border-radius:16px; padding:1.8rem; transition:border-color .25s,transform .2s; }
+    .service-card:hover { border-color:var(--accent); transform:translateY(-3px); }
+    .service-icon { width:48px; height:48px; border-radius:12px; background:rgba(200,150,90,0.12); display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:1rem; }
+    .service-card h3 { font-size:15px; font-weight:500; margin-bottom:.5rem; }
+    .service-card p { font-size:13px; color:var(--sub); line-height:1.7; }
+
+    /* PORTFOLIO */
+    .port-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+    .port-item { border-radius:14px; overflow:hidden; position:relative; aspect-ratio:4/3; cursor:pointer; }
+    .port-item.large { grid-column:span 2; }
+    .port-bg { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3rem; transition:transform .4s; }
+    .port-item:hover .port-bg { transform:scale(1.07); }
+    .port-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 50%); display:flex; flex-direction:column; justify-content:flex-end; padding:1.2rem; opacity:0; transition:opacity .25s; }
+    .port-item:hover .port-overlay { opacity:1; }
+    .port-cat { font-size:11px; color:var(--accent); letter-spacing:.08em; margin-bottom:.2rem; }
+    .port-title { font-size:15px; font-weight:500; color:#fff; }
+
+    /* TESTIMONIALS */
+    .test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+    .test-card { background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:1.8rem; }
+    .stars { color:var(--accent); font-size:13px; letter-spacing:.1em; margin-bottom:.8rem; }
+    .test-card blockquote { font-size:13px; color:var(--sub); line-height:1.8; margin-bottom:1.2rem; font-style:italic; }
+    .t-author { display:flex; align-items:center; gap:.8rem; }
+    .t-avatar { width:36px; height:36px; border-radius:50%; background:rgba(200,150,90,0.2); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:500; color:var(--accent); flex-shrink:0; }
+    .t-name { font-size:13px; font-weight:500; }
+    .t-role { font-size:11px; color:var(--sub); }
+
+    /* PHOTO UPLOAD */
+    .photo-section { background:var(--bg2); padding:4rem; text-align:center; }
+    .upload-box {
+      border:2px dashed var(--border); border-radius:20px; padding:3rem;
+      max-width:500px; margin:2rem auto 0; cursor:pointer;
+      transition:border-color .2s;
+    }
+    .upload-box:hover { border-color:var(--accent); }
+    .upload-box input { display:none; }
+    .upload-icon { font-size:3rem; margin-bottom:1rem; }
+    .upload-box p { font-size:14px; color:var(--sub); margin-bottom:.5rem; }
+    .upload-box small { font-size:12px; color:var(--sub); opacity:.6; }
+    #preview-img { width:200px; height:200px; border-radius:50%; object-fit:cover; border:3px solid var(--accent); margin:1rem auto; display:none; }
+
+    /* CONTACT */
+    .contact-bg { background:var(--bg2); }
+    .contact-inner { max-width:600px; margin:0 auto; text-align:center; }
+    .contact-inner p { font-size:15px; color:var(--sub); margin-bottom:2rem; line-height:1.8; }
+    .contact-form { display:flex; flex-direction:column; gap:1rem; text-align:left; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .form-group { display:flex; flex-direction:column; gap:.4rem; }
+    .form-group label { font-size:12px; color:var(--sub); letter-spacing:.04em; }
+    .form-group input, .form-group textarea {
+      background:var(--bg); border:1px solid var(--border); border-radius:10px;
+      padding:.75rem 1rem; color:var(--text); font-family:'DM Sans',sans-serif;
+      font-size:14px; outline:none; transition:border-color .2s;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color:var(--accent); }
+    .form-group textarea { resize:vertical; min-height:120px; }
+    .social-row { display:flex; justify-content:center; gap:1rem; margin-top:2rem; }
+    .social-btn { width:42px; height:42px; border-radius:50%; background:var(--bg); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:.95rem; color:var(--sub); text-decoration:none; transition:border-color .2s,color .2s; }
+    .social-btn:hover { border-color:var(--accent); color:var(--accent); }
+
+    /* FOOTER */
+    footer { padding:2rem 4rem; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    footer p { font-size:12px; color:var(--sub); }
+    footer .foot-logo { font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--accent); }
+
+    /* MOBILE */
+    @media(max-width:768px){
+      nav { padding:1rem 1.5rem; }
+      .nav-links { display:none; }
+      .hero { flex-direction:column; padding:7rem 1.5rem 3rem; gap:2.5rem; text-align:center; }
+      .hero-sub { margin:0 auto 2rem; }
+      .hero-btns { justify-content:center; }
+      .hero-right { order:-1; }
+      .avatar-ring { width:180px; height:180px; }
+      .avatar-inner { width:163px; height:163px; font-size:4rem; }
+      .stats { grid-template-columns:1fr; }
+      .stat { border-right:none; border-bottom:1px solid var(--border); }
+      section { padding:4rem 1.5rem; }
+      .about-grid, .services-grid, .port-grid, .test-grid { grid-template-columns:1fr; }
+      .port-item.large { grid-column:span 1; }
+      .form-row { grid-template-columns:1fr; }
+      footer { flex-direction:column; text-align:center; padding:2rem 1.5rem; }
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    .hero-left > * { animation:fadeUp .7s ease both; }
+    .hero-badge{animation-delay:.1s} .hero h1{animation-delay:.2s} .hero-sub{animation-delay:.3s} .hero-btns{animation-delay:.4s}
+    .hero-right { animation:fadeUp .7s .3s ease both; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Sarvarbek.</div>
+  <ul class="nav-links">
+    <li><a href="#haqimda">Men haqimda</a></li>
+    <li><a href="#xizmatlar">Xizmatlar</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#fikrlar">Fikrlar</a></li>
+    <li><a href="#aloqa">Aloqa</a></li>
+  </ul>
+  <a href="#aloqa" class="nav-btn">Bog'lanish</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">✦ <span>Dasturchi</span> &amp; Kitobxon</div>
+    <h1>Men <span class="name">Sarvarbek<br>Ismonjonov</span></h1>
+    <p class="hero-sub">Front-end developer, web dizayner va Telegram bot yaratuvchi. TATU 1-kurs talabasi. Har bir loyihani qalb bilan bajaraman.</p>
+    <div class="hero-btns">
+      <a href="#portfolio" class="btn-primary">Ishlarimni ko'r</a>
+      <a href="#aloqa" class="btn-secondary">Bog'lanish</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="avatar-ring" id="avatarRing">
+      <div class="avatar-inner" id="avatarInitials">S</div>
+      <div class="avatar-dot">✦ Faol</div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Yakunlangan loyiha</div></div>
+  <div class="stat"><div class="stat-num">4 yil</div><div class="stat-label">Dasturlash tajribasi</div></div>
+  <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Texnologiyalar</div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="haqimda">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-tag">Men haqimda</div>
+      <h2 class="section-title">Dasturchi,<br>Kitobxon &amp; Ijodkor</h2>
+      <p>Toshkent axborot texnologiyalari universiteti (TATU) 1-kurs talabasiman. Dasturlashga 4 yil oldin qiziqishim boshlangan va bu kun ham yangi narsalar o'rganishdan to'xtamayman.</p>
+      <p>Web saytlar, Telegram botlar va front-end ilovalar yarataman. Kitob o'qish mening sevimli mashg'ulotim — har bir kitob yangi dunyoni ochib beradi.</p>
+      <div class="skills-wrap">
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Front-end</span>
+        <span class="skill-tag">Telegram Bot</span>
+        <span class="skill-tag">Web Dizayn</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">Render</span>
+      </div>
+    </div>
+    <div class="about-image-block">
+      <div class="exp-item">
+        <div class="exp-dot">🎓</div>
+        <div>
+          <div class="exp-title">TATU — Axborot texnologiyalari</div>
+          <div class="exp-sub">2024 – hozir · 1-kurs talabasi</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-dot">💻</div>
+        <div>
+          <div class="exp-title">Dasturlash — 4 yillik tajriba</div>
+          <div class="exp-sub">HTML, CSS, JS, Python</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-dot">🤖</div>
+        <div>
+          <div class="exp-title">Telegram Bot Developer</div>
+          <div class="exp-sub">Python aiogram · Faol ishlab chiquvchi</div>
+        </div>
+      </div>
+      <div class="exp-item" style="margin-bottom:0">
+        <div class="exp-dot">📚</div>
+        <div>
+          <div class="exp-title">Kitobxon</div>
+          <div class="exp-sub">Texnik va badiiy adabiyot muxlisi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="xizmatlar" class="services-bg">
+  <div class="section-tag">Xizmatlar</div>
+  <h2 class="section-title">Nima qila olaman</h2>
+  <p class="section-sub">Tez, sifatli va arzon — har bir loyiha o'z vaqtida tayyorlanadi.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🖥️</div>
+      <h3>Web Dizayn &amp; Sayt</h3>
+      <p>Zamonaviy, chiroyli va barcha qurilmalarda to'g'ri ishlaydi. HTML, CSS, JS bilan yaratiladi.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤖</div>
+      <h3>Telegram Bot</h3>
+      <p>Python aiogram bilan har qanday murakkablikdagi Telegram botlar. Render yoki VPS da joylashtiriladi.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <h3>Front-end Dasturlash</h3>
+      <p>JavaScript bilan interaktiv va tez ishlaydigan web ilovalar yaratish.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🐍</div>
+      <h3>Python Skriptlar</h3>
+      <p>Avtomatlashtirish, ma'lumot yig'ish va qayta ishlash uchun Python skriptlar.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📱</div>
+      <h3>Responsive Dizayn</h3>
+      <p>Mobil, planshet va kompyuterda bir xil chiroyli ko'rinadigan saytlar.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚀</div>
+      <h3>Deploy &amp; Hosting</h3>
+      <p>GitHub Pages, Render va boshqa platformalarda loyihalarni joylashtirish.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-tag">Portfolio</div>
+  <h2 class="section-title">So'nggi ishlar</h2>
+  <p class="section-sub">Har bir loyiha — muammo va ijodiy yechim.</p>
+  <div class="port-grid">
+    <div class="port-item large" style="background:linear-gradient(135deg,#0d1a2e,#1a3a5c)">
+      <div class="port-bg" style="background:linear-gradient(135deg,#0d1a2e,#1a3a5c)">📸</div>
+      <div class="port-overlay">
+        <div class="port-cat">Telegram Bot · Python</div>
+        <div class="port-title">Instagram Video Yuklovchi Bot — So'nggi ish</div>
+      </div>
+    </div>
+    <div class="port-item" style="background:linear-gradient(135deg,#1a1420,#2d1f38)">
+      <div class="port-bg">🌐</div>
+      <div class="port-overlay">
+        <div class="port-cat">Web · HTML CSS JS</div>
+        <div class="port-title">Portfolio Sayt</div>
+      </div>
+    </div>
+    <div class="port-item" style="background:linear-gradient(135deg,#1a2010,#2d3818)">
+      <div class="port-bg">🤖</div>
+      <div class="port-overlay">
+        <div class="port-cat">Telegram Bot · Python</div>
+        <div class="port-title">Avtomatik Javob Boti</div>
+      </div>
+    </div>
+    <div class="port-item" style="background:linear-gradient(135deg,#201510,#402818)">
+      <div class="port-bg">📊</div>
+      <div class="port-overlay">
+        <div class="port-cat">Front-end · JavaScript</div>
+        <div class="port-title">Dashboard UI</div>
+      </div>
+    </div>
+    <div class="port-item large" style="background:linear-gradient(135deg,#0a1a1a,#0f3030)">
+      <div class="port-bg">🎨</div>
+      <div class="port-overlay">
+        <div class="port-cat">Web Dizayn · CSS</div>
+        <div class="port-title">Landing Page Dizayn</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="fikrlar" style="background:var(--bg2)">
+  <div class="section-tag">Fikrlar</div>
+  <h2 class="section-title">Do'stlar va mijozlar nima deydi</h2>
+  <p class="section-sub">Birga ishlagan odamlarning fikrlari.</p>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Sarvarbek juda tez va sifatli ishlaydi. Telegram botimiz ajoyib chiqdi, muddatidan oldin topshirdi!"</blockquote>
+      <div class="t-author">
+        <div class="t-avatar">AH</div>
+        <div>
+          <div class="t-name">Alisher Habibullayev</div>
+          <div class="t-role">Mijoz</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Saytimni shunday chiroyli qildi, hamma do'stlarim maqtayapti. Rekomendasiya qilaman!"</blockquote>
+      <div class="t-author">
+        <div class="t-avatar">AK</div>
+        <div>
+          <div class="t-name">Ali Karimov</div>
+          <div class="t-role">Mijoz</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Professional yondashuv, har bir detal muhim ekanini ko'rish mumkin. Zo'r natija!"</blockquote>
+      <div class="t-author">
+        <div class="t-avatar">MR</div>
+        <div>
+          <div class="t-name">Marjona Rahimova</div>
+          <div class="t-role">Mijoz</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Botni o'rnatishdan tortib, ishga tushirishgacha hammasi silliq bo'ldi. Rahmat!"</blockquote>
+      <div class="t-author">
+        <div class="t-avatar">OA</div>
+        <div>
+          <div class="t-name">Osiyo Alibekova</div>
+          <div class="t-role">Mijoz</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Incredible work! The website looks amazing and works perfectly. Very talented developer!"</blockquote>
+      <div class="t-author">
+        <div class="t-avatar">CR</div>
+        <div>
+          <div class="t-name">Cristiano Ronaldo</div>
+          <div class="t-role">Mijoz</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"El trabajo fue perfecto. El bot de Telegram funciona exactamente como lo necesitaba. ¡Gracias!"</blockquote>
+      <div class="t-author">
+        <div class="t-avatar">LM</div>
+        <div>
+          <div class="t-name">Leo Messi</div>
+          <div class="t-role">Mijoz</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO UPLOAD -->
+<section class="photo-section">
+  <div class="section-tag">Profil rasm</div>
+  <h2 class="section-title">Rasmingizni yuklang</h2>
+  <p style="color:var(--sub);font-size:14px;margin-top:.5rem">Yuqoridagi avatar o'rniga o'z rasmingiz ko'rinadi</p>
+  <img id="preview-img" src="" alt="Profil rasm" />
+  <div class="upload-box" onclick="document.getElementById('photoInput').click()">
+    <input type="file" id="photoInput" accept="image/*" onchange="uploadPhoto(event)" />
+    <div class="upload-icon">📷</div>
+    <p>Rasm yuklash uchun bosing</p>
+    <small>JPG, PNG, WEBP · Max 5MB</small>
+  </div>
+  <p style="color:var(--sub);font-size:12px;margin-top:1.5rem;opacity:.7">
+    ⚠️ Saytga doimiy qo'shish uchun: rasm faylini <code style="color:var(--accent)">photo.jpg</code> nomi bilan saqlang va HTML da <code style="color:var(--accent)">src="photo.jpg"</code> ga o'zgartiring
+  </p>
+</section>
+
+<!-- CONTACT -->
+<section id="aloqa" class="contact-bg">
+  <div class="contact-inner">
+    <div class="section-tag">Aloqa</div>
+    <h2 class="section-title">Birgalikda ishlaylikmi?</h2>
+    <p>Loyihangiz haqida yozing — tez orada javob beraman! GitHub va Render da faol ishlayman.</p>
+    <form class="contact-form" onsubmit="submitForm(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Ismingiz</label>
+          <input type="text" placeholder="Ismingiz" required />
+        </div>
+        <div class="form-group">
+          <label>Telegram yoki Email</label>
+          <input type="text" placeholder="@username yoki email" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Xizmat turi</label>
+        <input type="text" placeholder="Sayt, Telegram bot yoki boshqa..." />
+      </div>
+      <div class="form-group">
+        <label>Xabar</label>
+        <textarea placeholder="Loyihangiz haqida qisqacha ayting..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="align-self:center;padding:.9rem 2.5rem">Xabar yuborish →</button>
+    </form>
+    <div class="social-row">
+      <a href="https://github.com/" class="social-btn" target="_blank" title="GitHub">⌥</a>
+      <a href="https://t.me/" class="social-btn" target="_blank" title="Telegram">✈</a>
+      <a href="https://render.com/" class="social-btn" target="_blank" title="Render">▲</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">Sarvarbek.</div>
+  <p>© 2026 Sarvarbek Ismonjonov · Toshkent, O'zbekiston</p>
+  <p>GitHub · Render · TATU</p>
+</footer>
+
+<script>
+  const BOT_TOKEN = '8820991448:AAF6OuDXnKlWvaBwsizgAJpDquLne5-LMLs';
+  const CHAT_ID   = '8404915878';
+
+  async function submitForm(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn  = form.querySelector('button[type="submit"]');
+
+    const ism     = form.querySelectorAll('input')[0].value;
+    const contact = form.querySelectorAll('input')[1].value;
+    const mavzu   = form.querySelectorAll('input')[2].value;
+    const xabar   = form.querySelector('textarea').value;
+
+    const text = `📩 Yangi xabar!\n\n👤 Ism: ${ism}\n📬 Kontakt: ${contact}\n📌 Mavzu: ${mavzu || '—'}\n💬 Xabar: ${xabar || '—'}`;
+
+    btn.textContent = 'Yuborilmoqda...';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: CHAT_ID, text })
+      });
+      const data = await res.json();
+      if (data.ok) {
+        btn.textContent = '✓ Yuborildi!';
+        btn.style.background = '#2e7d32';
+        form.reset();
+        setTimeout(() => { btn.textContent = 'Xabar yuborish →'; btn.style.background = ''; btn.disabled = false; }, 3000);
+      } else {
+        throw new Error('Telegram error');
+      }
+    } catch (err) {
+      btn.textContent = '✗ Xato yuz berdi';
+      btn.style.background = '#c62828';
+      setTimeout(() => { btn.textContent = 'Xabar yuborish →'; btn.style.background = ''; btn.disabled = false; }, 3000);
+    }
+  }
+
+  function uploadPhoto(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      const img = document.getElementById('preview-img');
+      img.src = ev.target.result;
+      img.style.display = 'block';
+
+      // Update avatar in hero
+      const ring = document.getElementById('avatarRing');
+      const initials = document.getElementById('avatarInitials');
+      // Remove initials div, add img
+      let heroImg = ring.querySelector('img.hero-avatar');
+      if (!heroImg) {
+        heroImg = document.createElement('img');
+        heroImg.className = 'hero-avatar';
+        heroImg.style.cssText = 'width:255px;height:255px;border-radius:50%;object-fit:cover;';
+        initials.replaceWith(heroImg);
+      }
+      heroImg.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior:'smooth' }); }
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.style.opacity = '1';
+        el.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .port-item, .test-card, .stat').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(el);
+  });
+</script>
+
+<!-- ═══ PARTICLE + GLOW + CURSOR EFFECTS ═══ -->
+<style>
+  /* Custom cursor */
+  * { cursor: none !important; }
+
+  #cursor {
+    position: fixed; z-index: 99999; pointer-events: none;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--accent);
+    transform: translate(-50%, -50%);
+    transition: width .15s, height .15s, background .15s;
+    mix-blend-mode: screen;
+  }
+  #cursor-ring {
+    position: fixed; z-index: 99998; pointer-events: none;
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1.5px solid rgba(200,150,90,0.5);
+    transform: translate(-50%, -50%);
+    transition: transform .08s linear, width .2s, height .2s, border-color .2s;
+  }
+  body:has(a:hover) #cursor,
+  body:has(button:hover) #cursor { width: 20px; height: 20px; background: #fff; }
+  body:has(a:hover) #cursor-ring,
+  body:has(button:hover) #cursor-ring { width: 52px; height: 52px; border-color: var(--accent); }
+
+  /* Particle canvas */
+  #particle-canvas {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    opacity: 0.45;
+  }
+
+  /* Hero glow orbs */
+  .glow-orb {
+    position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+    filter: blur(80px); animation: orbFloat 8s ease-in-out infinite;
+  }
+  .glow-orb-1 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(200,150,90,0.18) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    animation-delay: 0s;
+  }
+  .glow-orb-2 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(100,80,200,0.1) 0%, transparent 70%);
+    bottom: 20%; left: -80px;
+    animation-delay: -3s;
+  }
+  .glow-orb-3 {
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, rgba(200,150,90,0.1) 0%, transparent 70%);
+    top: 60%; right: 10%;
+    animation-delay: -5s;
+  }
+
+  @keyframes orbFloat {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    33%       { transform: translateY(-30px) scale(1.05); }
+    66%       { transform: translateY(20px) scale(0.97); }
+  }
+
+  /* Glow on avatar */
+  .avatar-ring {
+    box-shadow: 0 0 40px rgba(200,150,90,0.3), 0 0 80px rgba(200,150,90,0.1) !important;
+    animation: avatarPulse 3s ease-in-out infinite;
+  }
+  @keyframes avatarPulse {
+    0%, 100% { box-shadow: 0 0 40px rgba(200,150,90,0.3), 0 0 80px rgba(200,150,90,0.1); }
+    50%       { box-shadow: 0 0 60px rgba(200,150,90,0.5), 0 0 120px rgba(200,150,90,0.2); }
+  }
+
+  /* Glow on logo */
+  .logo {
+    text-shadow: 0 0 20px rgba(200,150,90,0.6);
+    animation: logoGlow 3s ease-in-out infinite;
+  }
+  @keyframes logoGlow {
+    0%, 100% { text-shadow: 0 0 20px rgba(200,150,90,0.5); }
+    50%       { text-shadow: 0 0 35px rgba(200,150,90,0.9), 0 0 60px rgba(200,150,90,0.3); }
+  }
+
+  /* Glow on stat numbers */
+  .stat-num {
+    text-shadow: 0 0 20px rgba(200,150,90,0.4);
+  }
+
+  /* Glow on section-tag */
+  .section-tag {
+    text-shadow: 0 0 12px rgba(200,150,90,0.5);
+  }
+
+  /* Shimmer on btn-primary */
+  .btn-primary {
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute; top: -50%; left: -75%;
+    width: 50%; height: 200%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+    transform: skewX(-20deg);
+    animation: shimmer 2.5s infinite;
+  }
+  @keyframes shimmer {
+    0%   { left: -75%; }
+    100% { left: 150%; }
+  }
+
+  /* Typing cursor blink on hero h1 */
+  .hero h1::after {
+    content: '|';
+    color: var(--accent);
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* Glowing border on service cards on hover */
+  .service-card:hover {
+    box-shadow: 0 0 20px rgba(200,150,90,0.2), 0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  /* Ensure content is above canvas */
+  nav, .hero, .stats, section, footer { position: relative; z-index: 1; }
+</style>
+
+<!-- Cursor elements -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- Glow orbs -->
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+<div class="glow-orb glow-orb-3"></div>
+
+<!-- Particle canvas -->
+<canvas id="particle-canvas"></canvas>
+
+<script>
+  // ── Custom cursor ──
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top  = my + 'px';
+  });
+
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // ── Particles ──
+  const canvas = document.getElementById('particle-canvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x  = Math.random() * W;
+      this.y  = Math.random() * H;
+      this.r  = Math.random() * 1.5 + 0.3;
+      this.vx = (Math.random() - 0.5) * 0.4;
+      this.vy = (Math.random() - 0.5) * 0.4;
+      this.alpha = Math.random() * 0.6 + 0.1;
+      this.pulse = Math.random() * Math.PI * 2;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.pulse += 0.02;
+      if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+    }
+    draw() {
+      const a = this.alpha * (0.7 + 0.3 * Math.sin(this.pulse));
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200,150,90,${a})`;
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < 120; i++) particles.push(new Particle());
+
+  // Connect nearby particles
+  function drawLines() {
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 100) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(200,150,90,${0.12 * (1 - dist/100)})`;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => { p.update(); p.draw(); });
+    drawLines();
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+
+  // Mouse repel
+  document.addEventListener('mousemove', e => {
+    particles.forEach(p => {
+      const dx = p.x - e.clientX;
+      const dy = p.y - e.clientY;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 80) {
+        p.vx += dx / dist * 0.3;
+        p.vy += dy / dist * 0.3;
+        p.vx *= 0.95;
+        p.vy *= 0.95;
+      }
+    });
+  });
+</script>
+</body>
+</html>
