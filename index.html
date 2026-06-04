@@ -206,7 +206,11 @@
     #preview-img { width:200px; height:200px; border-radius:50%; object-fit:cover; border:3px solid var(--accent); margin:1rem auto; display:none; }
 
     /* CONTACT */
-    .contact-bg { background:var(--bg2); }
+    .contact-bg { 
+      background: 
+        linear-gradient(180deg, rgba(18,18,26,0.95) 0%, rgba(10,10,15,0.97) 100%),
+        url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=1920&q=80') center/cover no-repeat;
+    }
     .contact-inner { max-width:600px; margin:0 auto; text-align:center; }
     .contact-inner p { font-size:15px; color:var(--sub); margin-bottom:2rem; line-height:1.8; }
     .contact-form { display:flex; flex-direction:column; gap:1rem; text-align:left; }
@@ -274,9 +278,11 @@
       opacity: .5;
     }
 
-    /* Warm gradient background on hero */
+    /* Hero background image */
     .hero {
-      background: linear-gradient(160deg, #0a0a0f 0%, #0f0f1a 50%, #0a0a12 100%);
+      background: 
+        linear-gradient(160deg, rgba(10,10,15,0.92) 0%, rgba(15,15,26,0.88) 50%, rgba(10,10,18,0.94) 100%),
+        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80') center/cover no-repeat;
     }
 
     /* Subtle warm glow on cards */
@@ -295,9 +301,11 @@
       background: linear-gradient(90deg, #0a0a0f, #10101a, #0a0a0f);
     }
 
-    /* Portfolio section warm bg */
+    /* Portfolio section bg */
     #portfolio {
-      background: linear-gradient(180deg, #0a0a0f 0%, #0e0e18 100%);
+      background: 
+        linear-gradient(180deg, rgba(10,10,15,0.95) 0%, rgba(14,14,24,0.95) 100%),
+        url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1920&q=80') center/cover no-repeat;
     }
 
     /* Skill tag warm style */
