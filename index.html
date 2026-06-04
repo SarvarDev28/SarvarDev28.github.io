@@ -10,14 +10,14 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --accent: #D4A96A;
-      --accent2: #b8874e;
-      --bg: #1c1a14;
-      --bg2: #252318;
-      --bg3: #2e2b1e;
-      --text: #f5f0e8;
-      --sub: #a8a090;
-      --border: rgba(255,240,200,0.10);
+      --accent: #F0B860;
+      --accent2: #d4972e;
+      --bg: #0f0d08;
+      --bg2: #1a1710;
+      --bg3: #242015;
+      --text: #fff8ee;
+      --sub: #c4b8a0;
+      --border: rgba(255,220,140,0.15);
     }
 
     html { scroll-behavior: smooth; }
@@ -54,7 +54,7 @@
     .hero::before {
       content:''; position:absolute; top:-200px; right:-200px;
       width:600px; height:600px; border-radius:50%;
-      background:radial-gradient(circle,rgba(200,150,90,0.12) 0%,transparent 70%);
+      background:radial-gradient(circle,rgba(240,184,96,0.2) 0%,transparent 70%);
       pointer-events:none;
     }
     .hero-left { max-width:560px; }
@@ -88,7 +88,7 @@
       width:280px; height:280px; border-radius:50%;
       border:2px solid var(--accent);
       display:flex; align-items:center; justify-content:center;
-      position:relative; box-shadow:0 0 60px rgba(200,150,90,0.15);
+      position:relative; box-shadow:0 0 80px rgba(240,184,96,0.25);
       overflow:hidden;
     }
     .avatar-ring img {
@@ -136,20 +136,20 @@
     .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
     .service-card { background:var(--bg); border:1px solid var(--border); border-radius:16px; padding:1.8rem; transition:border-color .25s,transform .2s; }
     .service-card:hover { border-color:var(--accent); transform:translateY(-3px); }
-    .service-icon { width:48px; height:48px; border-radius:12px; background:rgba(200,150,90,0.12); display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:1rem; }
+    .service-icon { width:48px; height:48px; border-radius:12px; background:rgba(240,184,96,0.18); display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:1rem; }
     .service-card h3 { font-size:15px; font-weight:500; margin-bottom:.5rem; }
     .service-card p { font-size:13px; color:var(--sub); line-height:1.7; }
 
     /* PORTFOLIO */
-    .port-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
-    .port-item { border-radius:14px; overflow:hidden; position:relative; aspect-ratio:5/3; cursor:pointer; }
+    .port-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.8rem; }
+    .port-item { border-radius:12px; overflow:hidden; position:relative; aspect-ratio:4/3; cursor:pointer; }
     .port-item.large { grid-column:span 2; }
-    .port-bg { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:2rem; transition:transform .4s; }
+    .port-bg { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:1.6rem; transition:transform .4s; }
     .port-item:hover .port-bg { transform:scale(1.07); }
-    .port-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 50%); display:flex; flex-direction:column; justify-content:flex-end; padding:1.2rem; opacity:0; transition:opacity .25s; }
+    .port-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 50%); display:flex; flex-direction:column; justify-content:flex-end; padding:1rem; opacity:0; transition:opacity .25s; }
     .port-item:hover .port-overlay { opacity:1; }
-    .port-cat { font-size:11px; color:var(--accent); letter-spacing:.08em; margin-bottom:.2rem; }
-    .port-title { font-size:15px; font-weight:500; color:#fff; }
+    .port-cat { font-size:10px; color:var(--accent); letter-spacing:.08em; margin-bottom:.2rem; }
+    .port-title { font-size:13px; font-weight:500; color:#fff; }
 
     /* TESTIMONIALS */
     .test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
@@ -212,7 +212,8 @@
       .stats { grid-template-columns:1fr; }
       .stat { border-right:none; border-bottom:1px solid var(--border); }
       section { padding:4rem 1.5rem; }
-      .about-grid, .services-grid, .port-grid, .test-grid { grid-template-columns:1fr; }
+      .about-grid, .services-grid, .test-grid { grid-template-columns:1fr; }
+      .port-grid { grid-template-columns:1fr 1fr; }
       .port-item.large { grid-column:span 1; }
       .form-row { grid-template-columns:1fr; }
       footer { flex-direction:column; text-align:center; padding:2rem 1.5rem; }
@@ -245,7 +246,7 @@
 
     /* Warm gradient background on hero */
     .hero {
-      background: linear-gradient(160deg, #1c1a14 0%, #241f14 50%, #1e1c16 100%);
+      background: linear-gradient(160deg, #0f0d08 0%, #1a1508 50%, #12100a 100%);
     }
 
     /* Subtle warm glow on cards */
@@ -421,11 +422,11 @@
   <h2 class="section-title">So'nggi ishlar</h2>
   <p class="section-sub">Har bir loyiha — muammo va ijodiy yechim.</p>
   <div class="port-grid">
-    <div class="port-item large" style="background:linear-gradient(135deg,#0d1a2e,#1a3a5c)">
+    <div class="port-item" style="background:linear-gradient(135deg,#0d1a2e,#1a3a5c)">
       <div class="port-bg" style="background:linear-gradient(135deg,#0d1a2e,#1a3a5c)">📸</div>
       <div class="port-overlay">
         <div class="port-cat">Telegram Bot · Python</div>
-        <div class="port-title">Instagram Video Yuklovchi Bot — So'nggi ish</div>
+        <div class="port-title">Instagram Video Yuklovchi Bot</div>
       </div>
     </div>
     <div class="port-item" style="background:linear-gradient(135deg,#1a1420,#2d1f38)">
@@ -449,7 +450,7 @@
         <div class="port-title">Dashboard UI</div>
       </div>
     </div>
-    <div class="port-item large" style="background:linear-gradient(135deg,#0a1a1a,#0f3030)">
+    <div class="port-item" style="background:linear-gradient(135deg,#0a1a1a,#0f3030)">
       <div class="port-bg">🎨</div>
       <div class="port-overlay">
         <div class="port-cat">Web Dizayn · CSS</div>
@@ -698,7 +699,7 @@
   /* Particle canvas */
   #particle-canvas {
     position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    opacity: 0.45;
+    opacity: 0.6;
   }
 
   /* Hero glow orbs */
@@ -708,19 +709,19 @@
   }
   .glow-orb-1 {
     width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(200,150,90,0.18) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(240,184,96,0.18) 0%, transparent 70%);cle, rgba(200,150,90,0.18) 0%, transparent 70%);
     top: -100px; right: -100px;
     animation-delay: 0s;
   }
   .glow-orb-2 {
     width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(100,80,200,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(140,100,240,0.15) 0%, transparent 70%);
     bottom: 20%; left: -80px;
     animation-delay: -3s;
   }
   .glow-orb-3 {
     width: 250px; height: 250px;
-    background: radial-gradient(circle, rgba(200,150,90,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(240,184,96,0.15) 0%, transparent 70%);
     top: 60%; right: 10%;
     animation-delay: -5s;
   }
@@ -733,32 +734,32 @@
 
   /* Glow on avatar */
   .avatar-ring {
-    box-shadow: 0 0 40px rgba(200,150,90,0.3), 0 0 80px rgba(200,150,90,0.1) !important;
+    box-shadow: 0 0 50px rgba(240,184,96,0.5), 0 0 100px rgba(240,184,96,0.25) !important;
     animation: avatarPulse 3s ease-in-out infinite;
   }
   @keyframes avatarPulse {
-    0%, 100% { box-shadow: 0 0 40px rgba(200,150,90,0.3), 0 0 80px rgba(200,150,90,0.1); }
-    50%       { box-shadow: 0 0 60px rgba(200,150,90,0.5), 0 0 120px rgba(200,150,90,0.2); }
+    0%, 100% { box-shadow: 0 0 50px rgba(240,184,96,0.5), 0 0 100px rgba(240,184,96,0.25); }
+    50%       { box-shadow: 0 0 80px rgba(240,184,96,0.75), 0 0 150px rgba(240,184,96,0.4); }
   }
 
   /* Glow on logo */
   .logo {
-    text-shadow: 0 0 20px rgba(200,150,90,0.6);
+    text-shadow: 0 0 25px rgba(240,184,96,0.8);
     animation: logoGlow 3s ease-in-out infinite;
   }
   @keyframes logoGlow {
-    0%, 100% { text-shadow: 0 0 20px rgba(200,150,90,0.5); }
-    50%       { text-shadow: 0 0 35px rgba(200,150,90,0.9), 0 0 60px rgba(200,150,90,0.3); }
+    0%, 100% { text-shadow: 0 0 25px rgba(240,184,96,0.7); }
+    50%       { text-shadow: 0 0 45px rgba(240,184,96,1), 0 0 80px rgba(240,184,96,0.4); }
   }
 
   /* Glow on stat numbers */
   .stat-num {
-    text-shadow: 0 0 20px rgba(200,150,90,0.4);
+    text-shadow: 0 0 25px rgba(240,184,96,0.6);
   }
 
   /* Glow on section-tag */
   .section-tag {
-    text-shadow: 0 0 12px rgba(200,150,90,0.5);
+    text-shadow: 0 0 18px rgba(240,184,96,0.7);
   }
 
   /* Shimmer on btn-primary */
@@ -789,7 +790,7 @@
 
   /* Glowing border on service cards on hover */
   .service-card:hover {
-    box-shadow: 0 0 20px rgba(200,150,90,0.2), 0 8px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 0 30px rgba(240,184,96,0.35), 0 8px 40px rgba(0,0,0,0.4);
   }
 
   /* Ensure content is above canvas */
