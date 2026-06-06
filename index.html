@@ -38,12 +38,77 @@
 
     /* NAV */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: absolute; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
       padding: 1rem 4rem;
       background: rgba(232,244,250,0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
+    }
+    nav::after {
+      content: '';
+      position: absolute;
+      bottom: -20px; left: 0; right: 0;
+      height: 20px;
+      background: linear-gradient(180deg, 
+        rgba(125,211,252,0.15) 0%, 
+        rgba(14,165,233,0.05) 40%,
+        transparent 100%
+      );
+      pointer-events: none;
+    }
+    /* Ice drips from navbar */
+    .nav-icicles {
+      position: absolute;
+      bottom: -35px; left: 0; right: 0;
+      height: 35px;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .nav-icicles::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 100%;
+      background: 
+        radial-gradient(ellipse 3px 16px at 5% 0%, rgba(125,211,252,0.6) 0%, transparent 100%),
+        radial-gradient(ellipse 2px 22px at 10% 0%, rgba(14,165,233,0.5) 0%, transparent 100%),
+        radial-gradient(ellipse 4px 28px at 18% 0%, rgba(56,189,248,0.55) 0%, transparent 100%),
+        radial-gradient(ellipse 2px 14px at 24% 0%, rgba(125,211,252,0.4) 0%, transparent 100%),
+        radial-gradient(ellipse 3px 24px at 32% 0%, rgba(14,165,233,0.5) 0%, transparent 100%),
+        radial-gradient(ellipse 2px 18px at 38% 0%, rgba(56,189,248,0.6) 0%, transparent 100%),
+        radial-gradient(ellipse 4px 30px at 45% 0%, rgba(125,211,252,0.5) 0%, transparent 100%),
+        radial-gradient(ellipse 2px 15px at 52% 0%, rgba(14,165,233,0.45) 0%, transparent 100%),
+        radial-gradient(ellipse 3px 20px at 58% 0%, rgba(56,189,248,0.5) 0%, transparent 100%),
+        radial-gradient(ellipse 4px 26px at 65% 0%, rgba(125,211,252,0.55) 0%, transparent 100%),
+        radial-gradient(ellipse 2px 17px at 72% 0%, rgba(14,165,233,0.4) 0%, transparent 100%),
+        radial-gradient(ellipse 3px 23px at 78% 0%, rgba(56,189,248,0.5) 0%, transparent 100%),
+        radial-gradient(ellipse 4px 32px at 85% 0%, rgba(125,211,252,0.6) 0%, transparent 100%),
+        radial-gradient(ellipse 2px 19px at 92% 0%, rgba(14,165,233,0.45) 0%, transparent 100%),
+        radial-gradient(ellipse 3px 14px at 97% 0%, rgba(56,189,248,0.4) 0%, transparent 100%);
+      animation: icicleDrip 3s ease-in-out infinite alternate;
+    }
+    .nav-icicles::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(125,211,252,0.4) 20%, 
+        rgba(14,165,233,0.3) 50%, 
+        rgba(125,211,252,0.4) 80%, 
+        transparent
+      );
+      animation: iceShine 2s ease-in-out infinite;
+    }
+    @keyframes icicleDrip {
+      0% { opacity: 0.7; transform: scaleY(1); }
+      100% { opacity: 1; transform: scaleY(1.1); }
+    }
+    @keyframes iceShine {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
     }
     .logo {
       font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700;
@@ -438,6 +503,7 @@
     <li><a href="#aloqa">Aloqa</a></li>
   </ul>
   <a href="#aloqa" class="nav-btn">Bog'lanish</a>
+  <div class="nav-icicles"></div>
 </nav>
 
 <!-- HERO -->
