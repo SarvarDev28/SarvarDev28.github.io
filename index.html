@@ -45,7 +45,14 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-    .logo { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--accent); }
+    .logo {
+      font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700;
+      background: linear-gradient(180deg, #38BDF8 0%, #0EA5E9 50%, #0369A1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 8px rgba(14,165,233,0.3));
+    }
     .nav-links { display:flex; gap:2rem; list-style:none; }
     .nav-links a { font-size:13px; color:var(--sub); text-decoration:none; letter-spacing:.05em; transition:color .2s; font-weight:400; }
     .nav-links a:hover { color:var(--text); }
@@ -71,8 +78,26 @@
       font-size:12px; color:var(--sub); letter-spacing:.05em; margin-bottom:1.5rem;
     }
     .hero-badge span { color:var(--accent); }
-    .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.8rem,5vw,4rem); font-weight:700; line-height:1.1; margin-bottom:1.2rem; }
-    .hero h1 .name { color:var(--accent); }
+    .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.8rem,5vw,4rem); font-weight:700; line-height:1.1; margin-bottom:1.2rem; color:#0c2d3f; }
+    .hero h1 .name {
+      background: linear-gradient(180deg, #7DD3FC 0%, #0EA5E9 40%, #0369A1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      position: relative;
+      display: inline-block;
+    }
+    .hero h1 .name::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0; left: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 50%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      pointer-events: none;
+    }
     .hero-sub { font-size:16px; color:var(--sub); line-height:1.8; margin-bottom:2rem; max-width:420px; }
     .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
     .btn-primary {
@@ -142,7 +167,14 @@
     .stats { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
     .stat { text-align:center; padding:2rem; border-right:1px solid var(--border); }
     .stat:last-child { border-right:none; }
-    .stat-num { font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:700; color:var(--accent); }
+    .stat-num {
+      font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:700;
+      background: linear-gradient(180deg, #7DD3FC 0%, #0EA5E9 60%, #0369A1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 1px 3px rgba(14,165,233,0.2));
+    }
     .stat-label { font-size:12px; color:var(--sub); margin-top:.3rem; letter-spacing:.05em; }
 
     /* SECTIONS */
@@ -232,7 +264,13 @@
     /* FOOTER */
     footer { padding:2rem 4rem; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
     footer p { font-size:12px; color:var(--sub); }
-    footer .foot-logo { font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--accent); }
+    footer .foot-logo {
+      font-family:'Playfair Display',serif; font-size:1.2rem;
+      background: linear-gradient(180deg, #38BDF8 0%, #0EA5E9 50%, #0369A1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
     /* MOBILE */
     @media(max-width:768px){
@@ -263,10 +301,11 @@
     /* ── BEZAKLAR ── */
     /* Gradient border on section titles */
     .section-title {
-      background: linear-gradient(90deg, var(--text) 60%, var(--accent));
+      background: linear-gradient(180deg, #0c2d3f 0%, #0EA5E9 80%, #7DD3FC 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      filter: drop-shadow(0 1px 2px rgba(14,165,233,0.15));
     }
 
     /* Decorative line after section-tag */
@@ -882,22 +921,50 @@
 
   /* Glow on logo */
   .logo {
-    text-shadow: 0 0 20px rgba(14,165,233,0.3);
     animation: logoGlow 3s ease-in-out infinite;
   }
   @keyframes logoGlow {
-    0%, 100% { text-shadow: 0 0 20px rgba(14,165,233,0.3); }
-    50%       { text-shadow: 0 0 35px rgba(14,165,233,0.5), 0 0 60px rgba(56,189,248,0.2); }
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(14,165,233,0.3)); }
+    50%       { filter: drop-shadow(0 0 16px rgba(14,165,233,0.5)) drop-shadow(0 0 30px rgba(56,189,248,0.2)); }
   }
 
   /* Glow on stat numbers */
   .stat-num {
-    text-shadow: 0 0 15px rgba(14,165,233,0.2);
+    text-shadow: none;
   }
 
   /* Glow on section-tag */
   .section-tag {
     text-shadow: 0 0 12px rgba(14,165,233,0.3);
+  }
+
+  /* Frost text effect on hero name */
+  .hero h1 .name {
+    animation: frostShimmer 4s ease-in-out infinite;
+  }
+  @keyframes frostShimmer {
+    0%, 100% { filter: drop-shadow(0 0 4px rgba(125,211,252,0.3)); }
+    50%       { filter: drop-shadow(0 0 12px rgba(14,165,233,0.4)) drop-shadow(0 0 25px rgba(56,189,248,0.15)); }
+  }
+
+  /* Ice crystal effect on service card titles */
+  .service-card h3 {
+    color: #0c2d3f;
+    text-shadow: 0 0 1px rgba(14,165,233,0.1);
+  }
+
+  /* Frosted section-tag */
+  .section-tag {
+    background: linear-gradient(90deg, #0EA5E9, #38BDF8, #0EA5E9);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: iceFlow 3s linear infinite;
+  }
+  @keyframes iceFlow {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
   }
 
   /* Shimmer on btn-primary */
@@ -920,9 +987,10 @@
   /* Typing cursor blink on hero h1 */
   .hero h1::after {
     content: '|';
-    color: var(--accent);
+    color: #38BDF8;
     animation: blink 1s step-end infinite;
     margin-left: 2px;
+    text-shadow: 0 0 8px rgba(56,189,248,0.5);
   }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
