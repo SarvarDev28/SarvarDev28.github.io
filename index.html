@@ -38,7 +38,7 @@
 
     /* NAV */
     nav {
-      position: absolute; top: 0; left: 0; right: 0; z-index: 100;
+      position: sticky; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
       padding: 1rem 4rem;
       background: rgba(232,244,250,0.85);
@@ -801,6 +801,12 @@
 </footer>
 
 <script>
+  // Sahifa reload bo'lganda tepaga qaytarish
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+
   const BOT_TOKEN = '8820991448:AAF6OuDXnKlWvaBwsizgAJpDquLne5-LMLs';
   const CHAT_ID   = '8404915878';
 
